@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteBase /aims/
+
+# Exclude index.php, logout.php, get_user_group_ajax.php, login.php, signup.php and asset files from rewriting
+RewriteCond %{REQUEST_URI} !^/aims/(index|logout|get_user_group_ajax|login|signup|upload)\.php
+RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|ico|mp4)$ [NC]
+
+# Exclude paths containing the word "ajax"
+RewriteCond %{REQUEST_URI} !ajax [NC]
+
+RewriteRule ^([^/]+)$ routing.php?page=$1 [QSA,L]
